@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up JDK 17
@@ -21,11 +21,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Download JUnit dependencies
+      run: |
+        mkdir libs
+        curl -L -o libs/junit-jupiter-api.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar
+        curl -L -o libs/apiguardian-api.jar https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+        curl -L -o libs/opentest4j.jar https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+
     - name: Compile Java project
       run: |
-        find . -name "*.java" > sources.txt
+        find ./src -name "*.java" > sources.txt
         mkdir -p out
-        javac -d out @sources.txt
+        javac --module-path libs -d out @sources.txt
 
-    - name: Run tests (if any)
-      run: echo "Tests à configurer selon votre framework (JUnit, TestNG...)"
+    - name: Done
+      run: echo "Compilation réussie"
