@@ -21,12 +21,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Download JUnit dependencies
+    - name: Download JUnit jars
       run: |
         mkdir libs
         curl -L -o libs/junit-jupiter-api.jar https://repo1.maven.org/maven2/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar
         curl -L -o libs/apiguardian-api.jar https://repo1.maven.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
         curl -L -o libs/opentest4j.jar https://repo1.maven.org/maven2/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+
+    - name: Supprimer module-info.java
+      run: rm -f ./src/module-info.java
 
     - name: Compile Java project
       run: |
@@ -35,4 +38,4 @@ jobs:
         javac -cp "libs/*" -d out @sources.txt
 
     - name: Done
-      run: echo "Compilation réussie"
+      run: echo "Compilation terminée sans erreurs."
