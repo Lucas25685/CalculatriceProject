@@ -12,15 +12,15 @@ public class Main {
             System.out.print("Entrez le premier nombre : ");
             double a = scanner.nextDouble();
 
-            System.out.print("Entrez un opérateur (+, -, *, /) : ");
+            System.out.print("Entrez un operateur (+, -, *, /) : ");
             char operateur = scanner.next().charAt(0);
 
-            System.out.print("Entrez le deuxième nombre : ");
+            System.out.print("Entrez le deuxieme nombre : ");
             double b = scanner.nextDouble();
 
             try {
                 double resultat = calc.calculer(a, b, operateur);
-                System.out.println("Résultat : " + resultat);
+                System.out.println("Resultat : " + resultat);
             } catch (ArithmeticException | IllegalArgumentException e) {
                 System.out.println("Erreur : " + e.getMessage());
             }

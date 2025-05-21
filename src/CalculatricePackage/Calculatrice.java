@@ -16,7 +16,7 @@ public class Calculatrice {
 
     public double division(double a, double b) {
         if (b == 0) {
-            throw new ArithmeticException("Division par zéro");
+            throw new ArithmeticException("Division par zero");
         }
         return a / b;
     }
@@ -27,7 +27,7 @@ public class Calculatrice {
             case '-': return soustraction(a, b);
             case '*': return multiplication(a, b);
             case '/': return division(a, b);
-            default: throw new IllegalArgumentException("Opérateur invalide: " + operateur);
+            default: throw new IllegalArgumentException("Operateur invalide: " + operateur);
         }
     }
 }
