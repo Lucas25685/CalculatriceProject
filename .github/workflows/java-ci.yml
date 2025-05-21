@@ -32,7 +32,7 @@ jobs:
       run: |
         find ./src -name "*.java" > sources.txt
         mkdir -p out
-        javac --module-path libs -d out @sources.txt
+        javac -cp "libs/*" -d out @sources.txt
 
     - name: Done
       run: echo "Compilation réussie"
